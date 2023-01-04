@@ -465,6 +465,84 @@ app.listen(PORT, ()=>{
 
 ---
 
-# Conclusion
+# 6. Writing Efficient Queries
 
--
+- 
+
+![Untitled](Microsoft%20SQL%20Server%20Essential%20Training%20f6b9e880fda0420391cf47fa45183947/Untitled%203.png)
+
+- CREATE INDEX or add primary key to table
+- primary key column typically creates a clustered index
+- clustered index defines physical order of record
+- secondary indexes can be added to any other columns
+- non-clustered indexes point to a clustered index location
+
+**maintaining indexes**
+
+- indexes cost computational resources to maintain
+- they need to be updated every time there is a change in the table
+- retrieving data is faster, but indexing/storing data is slower
+
+![Untitled](Microsoft%20SQL%20Server%20Essential%20Training%20f6b9e880fda0420391cf47fa45183947/Untitled%204.png)
+
+![Untitled](Microsoft%20SQL%20Server%20Essential%20Training%20f6b9e880fda0420391cf47fa45183947/Untitled%205.png)
+
+## Stored Procedures:
+
+![Untitled](Microsoft%20SQL%20Server%20Essential%20Training%20f6b9e880fda0420391cf47fa45183947/Untitled%206.png)
+
+### Chapter Quiz (8 Questions):
+
+1. What search method does SQL Server perform when locating table records without the assistance of an index?
+    - **Scan**
+    - Seek
+    - Sort
+    - Heap
+2. In the Design pane of the View Designer, what indicates the foreign key side of a one-to-many relationship?
+    - **infinity symbol**
+    - key icon
+    - the letter "N"
+    - the initials "FK"
+3. What character precedes a parameter name when creating a stored procedure?
+    - `***@***`
+    - `#`
+    - `$`
+    - `%`
+4. Which command will run a stored procedure called `usp_SelectPeople`?
+    - `TRIGGER usp_SelectPeople;`
+    - `***EXEC usp_SelectPeople;***`
+    - `USE usp_SelectPeople;`
+    - `RUN usp_SelectPeople;`
+5. You want to create a user-defined function. In what order do the clauses need to appear?
+    - **CREATE FUNCTION, RETURNS, AS, BEGIN, RETURN, END**
+    - CREATE FUNCTION, AS, BEGIN, END, RETURN
+    - BEGIN, CREATE FUNCTION, AS, RETURN, END
+    - CREATE FUNCTION, AS, START, END, RETURNS
+6. Which query would return the first four characters from the Products table's Serial Number field in a column called SN?
+    - `SELECT LEFT(4) OF SerialNumber AS SN
+    FROM Products;`
+    - `***SELECT LEFT(SerialNumber, 4) AS SN
+    FROM Products;***`
+    - `SELECT SN = LEFT(SerialNumber, 4)
+    FROM Products;`
+    - `SELECT FIRST(SerialNumber, 4) AS SN
+    FROM Products;`
+7. Which query would return the highest age found in a table of people?
+    - `SELECT Maximum(Age)
+    FROM People;`
+    - `SELECT Max(Person)
+    BY Age;`
+    - `***SELECT Max(Age)
+    FROM People;***`
+    - `SELECT Max(*)
+    FROM People;`
+8. Indexes on columns that do not define the sorting of stored data on disk are called `_____`?.
+    - clustered
+    - subordinate
+    - insubordinate
+    - **nonclustered**
+    
+
+---
+
+# 7. Backup and Restore
