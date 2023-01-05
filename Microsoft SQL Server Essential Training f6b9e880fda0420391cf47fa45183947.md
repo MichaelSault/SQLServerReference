@@ -546,3 +546,80 @@ app.listen(PORT, ()=>{
 ---
 
 # 7. Backup and Restore
+
+## Create a full backup of the database
+
+- no undo option, so you better have a backup
+- select db, tasks, backup
+    - chose your database
+
+## Create a differential backup of the database
+
+- only stores changes after the last full backup
+- a .bak file is a media that stores multiple sets of data
+- reduces file size at the cost of making the .bak file more complex
+    - instead of making many full backups, it will make one full and many differential backups
+
+## Restore a backup
+
+- select db, tasks, restore
+- timeline feature is a visual representation of the backups made to a db
+    - can backup between backups
+        - SQL Server will restore backup and then make the same changes to the selected point
+            - i.e. between backups
+
+## Business continuity solutions
+
+- reduce risk of catastrophic feature and the need for a backup
+- availability groups
+    - multiple server machines work together in a cluster
+        - primary db copies transactions to a secondary database
+        - secondary db can be used if primary fails
+            - fail over
+        - little to no downtime
+        - replicas can be used for read-only tasks
+        - increased cost due to increased(double) hardware/server requirements
+- Log Shipping
+    - primary server + warm standby
+    - primary db sends backup to warm standby when made
+        - warm standby is on a slight delay
+            - allows you to prevent failures
+            - saves time as backup is already restored
+            - but the 2 dbs are never identical
+                - some data loss might occur
+- backup to the cloud
+    - link feature
+        - duplicate copy hosted on the cloud
+        - currently in closed beta
+
+### Chapter Quiz (5 Questions):
+
+1. The new Link feature for SQL Server 2022 will replicate your on-premises database to which location?
+    - **Azure SQL Managed Instance**
+    - Azure Cloud Storage
+    - Docker
+    - Azure Virtual Machine
+2. What Linux feature allows server machines to assume control of a SQL Server instance should the primary server fail?
+    - Linux Disaster Recovery Monitor
+    - **Linux Pacemaker Clusters**
+    - Linux Failover Clusters
+    - Linux Operation Continuity
+3. What database component is required to be backed up in order to enable point-in-time restores?
+    - **the transaction log**
+    - data files
+    - differential backups
+    - media sets
+4. A differential backup contains all of the changes made to the database since `_____`.
+    - the database was last restored
+    - the last differential backup was made
+    - **the last full backup was made**
+    - the last full or differential backup was made
+5. Database backups saved to a URL will go where?
+    - a folder in OneDrive
+    - a blob storage account on Microsoft.com
+    - **an Azure Storage Container**
+    - a location on your company's intranet
+
+---
+
+# 8. Security
