@@ -585,3 +585,104 @@ Tags: In Progress, SQL, SQL Server, Study
     - inside of the server instance
     - in a Windows Certificate Store
     - in an Azure Key Vault
+    
+
+---
+
+# 9. Monitoring and Management
+
+## Explore the role of system databases
+
+- don’t modify or alter system databases
+- feel free to querry them
+- master
+    - contains tables and views with user/login data
+- model
+    - template data for new databases on the server
+- msdb
+    - scheduling jobs running in the background using SQLagent
+    - location and history of db backups
+- tempdb
+    - temp storage while moving data around (middle man db)
+
+## Prevent excessive TempDB autogrowth
+
+- view current size
+    - right click → properties
+        - initial size and autogrowth/max size
+        - recover model → simple
+
+## Review the SQL Server error log
+
+- management folder
+    - SQL Server Logs
+        - view → SQL Server Log
+
+## Dynamic management views (DMVs)
+
+- server scoped
+    - require VIEW SERVER STATE permission
+- Database scoped
+    - requires VIEW DATABASE STATE permission
+- using DMVs
+    
+    ```jsx
+    SELECT *
+    FROM sys.dm_exec_cached_plans
+    ```
+    
+
+## Database Console Commands (DBCC)
+
+1. Maintenance
+2. Misc
+3. Informational
+4. Validation
+
+- DBCC CHECKDB
+    - runs a checksum validation on the database
+
+- Microsoft recommends you restore from backup instead of using one of the repair commands
+    - REPAIR_FAST
+    - REPAIR_REBUILD
+    - REPAIR_ALLOW_DATA_LOSS
+
+### Chapter Quiz (5 Questions):
+
+1. What is the most comprehensive database console command in SQL Server?
+    - `***CHECKDB***`
+    - `REPAIRDB`
+    - `MONITORDB`
+    - `VERIFYDB`
+2. What two scopes do Dynamic Management views come in?
+    - information and transaction
+    - **server and database**
+    - definition and manipulation
+    - user and owner
+3. SQL Server's logs can be found under what main folder in the Object Explorer?
+    - **Management**
+    - Databases
+    - Server Objects
+    - Security
+4. What is the recommended recovery model for TempDB?
+    - full
+    - partial
+    - bulk-logged
+    - **simple**
+5. Which system database acts as a template for all other databases created on the server instance?
+    - **model**
+    - msdb
+    - tempdb
+    - master
+    
+
+---
+
+# Conclusion
+
+## Next steps
+
+- Querying Microsoft SQL Server 2019
+    - standalone course on TSQL queries
+- Relational Databases Essential Training
+- Database Foundations: Intro to Databases
