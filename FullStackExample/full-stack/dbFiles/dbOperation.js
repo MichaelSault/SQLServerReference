@@ -16,8 +16,9 @@ const getEmployees = async(firstname) => {
 const createEmployee = async(Employee) => {
     try {
         let pool = await sql.connect(config);
-        let employees = pool.request().query(`INSERT INTO EmployeeDemographics VALUES (${Employee.EmployeeID}, '${Employee.Firstname}', '${Employee.Lastname}', ${Employee.Age}, '${Employee.Gender}')`)
-        console.log(employees);
+        let employees = await pool.request().query(`INSERT INTO EmployeeDemographics VALUES (
+            ${Employee.EmployeeID}, '${Employee.Firstname}', '${Employee.Lastname}', ${Employee.Age}, '${Employee.Gender}'
+        )`);
         return employees;
     }
     catch(error) {

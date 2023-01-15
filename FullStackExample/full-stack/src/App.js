@@ -27,11 +27,27 @@ function App() {
     const newData = await fetch('/api', {
       method: 'POST',
       headers: {
-        'Content-type': 'application/json',
+        'Content-Type': 'application/json',
         'Accept': 'application/json'
       },
       body: JSON.stringify({
         name: employee.Firstname
+      })
+    })
+    .then(res => res.json());
+    console.log(newData);
+    setReturnedData(newData[0])
+  }
+
+  const createEmployee = async () => {
+    const newData = await fetch('/hello', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify({
+        ...employee
       })
     })
     .then(res => res.json());
@@ -63,8 +79,8 @@ function App() {
         name='Gender' 
         placeholder='Gender' 
         onChange={setInput}></input>
-      <button onClick={() => fetchData('/quit')}>View</button>
-      <button onClick={() => fetchData('/quit')}>Create</button>
+      <button onClick={() => fetchData()}>View</button>
+      <button onClick={() => createEmployee()}>Create</button>
       <p>EmployeeID: {returnedData.EmployeeID}</p>
       <p>Firstname: {returnedData.Firstname}</p>
       <p>Lastname: {returnedData.Lastname}</p>
