@@ -4,8 +4,8 @@ const config = require('./dbConfig'),
 const getEmployees = async(firstname) => {
     try {
         let pool = await sql.connect(config);
-        let employees = await pool.request().query(`SELECT * from EmployeeDemographics WHERE Firstname = '${firstname}`);
-        console.log(employees);
+        let employees = await pool.request().query(`SELECT * from EmployeeDemographics WHERE Firstname = '${firstname}'`);
+        //console.log(employees);
         return employees;
     }
     catch(error) {

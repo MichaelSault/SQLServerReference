@@ -3,8 +3,10 @@ import React, {useState} from 'react';
 
 function App() {
 
-  const [returnedData, setReturnedData] = useState(['hello fellow hu-mans [:D]']);
+  const [returnedData, setReturnedData] = useState({EmployeeID: 0, Firstname: '', Lastname: '', Age: 0, Gender: ''});
   const [employee, setEmployee] = useState({EmployeeID: 0, Firstname: '', Lastname: '', Age: 0, Gender: ''}) //use state is a hook for functional components
+
+  //const [returnedFirstname, setFirstname] = useState('');
 
   const setInput = (e) => {
     const {name, value} = e.target;
@@ -24,7 +26,7 @@ function App() {
 
   const fetchData = async () => {
     console.log(employee);
-    const newData = await fetch('/api', {
+    const newData = await fetch('http://localhost:5000/api', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -40,7 +42,7 @@ function App() {
   }
 
   const createEmployee = async () => {
-    const newData = await fetch('/hello', {
+    const newData = await fetch('http://localhost:5000/hello', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -86,7 +88,7 @@ function App() {
       <p>Lastname: {returnedData.Lastname}</p>
       <p>Age: {returnedData.Age}</p>
       <p>Gender: {returnedData.Gender}</p>
-      {returnedData}
+      
     </div>
   );
 }

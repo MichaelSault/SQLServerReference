@@ -15,6 +15,7 @@ app.use(cors());
 app.post('/api', async(req, res) => { 
     console.log('called api');
     const result = await dbOperation.getEmployees(req.body.name);
+    console.log(result.recordset[0]);
     res.send(result.recordset); //sending objects are easier on the front end
 });
 
@@ -22,7 +23,7 @@ app.post('/hello', async(req, res) => {
     await dbOperation.createEmployee(req.body);
     const result = await dbOperation.getEmployees(req.body.Firstname);
     console.log('called hello');
-    res.send(result.recordset);
+    //res.send(result.recordset);
 });
 
 app.listen(API_PORT, () => console.log(`Listening on port ${API_PORT}`));
