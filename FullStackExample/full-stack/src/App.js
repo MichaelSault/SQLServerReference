@@ -1,12 +1,14 @@
 import './App.css';
 import React, {useState} from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
+import SignInSide from './component/SignInSide';
+import SignUp from './component/SignUp';
 
 function App() {
 
   const [returnedData, setReturnedData] = useState({EmployeeID: 0, Firstname: '', Lastname: '', Age: 0, Gender: ''});
   const [employee, setEmployee] = useState({EmployeeID: 0, Firstname: '', Lastname: '', Age: 0, Gender: ''}) //use state is a hook for functional components
-
-  //const [returnedFirstname, setFirstname] = useState('');
 
   const setInput = (e) => {
     const {name, value} = e.target;
@@ -58,6 +60,15 @@ function App() {
   }
 
   return (
+    <>
+    <BrowserRouter>
+      <Routes>
+        <Route path='/' element={<SignInSide />}/>
+        <Route path='/Login' element={<SignInSide />}/>
+        <Route path='/SignUp' element={<SignUp />}/>
+      </Routes>
+    </BrowserRouter>
+    
     <div className="App">
       <input
         type="number" 
@@ -88,8 +99,8 @@ function App() {
       <p>Lastname: {returnedData.Lastname}</p>
       <p>Age: {returnedData.Age}</p>
       <p>Gender: {returnedData.Gender}</p>
-      
     </div>
+    </>
   );
 }
 
